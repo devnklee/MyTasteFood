@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var textExample: UILabel!
+    
+    
+    let SearchAPI_URL = "https://openapi.naver.com/v1/search/local.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +31,42 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text )
+        print(searchBar.text as Any )
+        
+        
+        
+        if let searchText = searchBar.text {
+            let params : [String : String] = ["query" : searchText]
+            
+            var keys : NSDictionary?
+            var clientID : String?
+            var clientSecret : String?
+            
+            if let path = Bundle.main.path(forResource: "API", ofType: "plist"){
+                keys = NSDictionary(contentsOfFile: path)
+                print(keys as Any)
+             
+                if let dict = keys {
+                    clientID = dict["clientId"] as? String
+                    clientSecret = dict["clientSecret"] as? String
+                }
+            }
+            
+            
+            
+            let headers : [String : String] = ["X-Naver-Client-Id" : clientID!, "X-Naver-Client-Secret" : clientSecret!]
+       
+        
+            Alamofire.request(SearchAPI_URL, method: .get, parameters: params, headers: headers).responseJSON { (response) in
+                if response.result.isSuccess {
+                    print(JSON(response.result.value!))
+                }else {
+                    print(response.result.error as Any)
+                }
+            }
+            
+            
+        }
     }
 
     /*

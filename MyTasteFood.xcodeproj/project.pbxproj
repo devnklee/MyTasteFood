@@ -13,6 +13,7 @@
 		2255B701210AD773000BDFF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2255B700210AD773000BDFF4 /* Assets.xcassets */; };
 		2255B704210AD773000BDFF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2255B702210AD773000BDFF4 /* LaunchScreen.storyboard */; };
 		2255B70D210AE797000BDFF4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255B70C210AE797000BDFF4 /* SearchViewController.swift */; };
+		22A72B18210B05C60072C398 /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A72B17210B05C60072C398 /* API.plist */; };
 		F2119AD5C11BD387EBDE7028 /* Pods_MyTasteFood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E417B2D381346030FDF6D718 /* Pods_MyTasteFood.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		2255B705210AD773000BDFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2255B70B210AD792000BDFF4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2255B70C210AE797000BDFF4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		22A72B17210B05C60072C398 /* API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
 		568678310C59BB3DA309AB4E /* Pods-MyTasteFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasteFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasteFood/Pods-MyTasteFood.release.xcconfig"; sourceTree = "<group>"; };
 		AD41C2476C3AD6EAD27533FA /* Pods-MyTasteFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasteFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasteFood/Pods-MyTasteFood.debug.xcconfig"; sourceTree = "<group>"; };
 		E417B2D381346030FDF6D718 /* Pods_MyTasteFood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasteFood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 				2255B700210AD773000BDFF4 /* Assets.xcassets */,
 				2255B702210AD773000BDFF4 /* LaunchScreen.storyboard */,
 				2255B705210AD773000BDFF4 /* Info.plist */,
+				22A72B17210B05C60072C398 /* API.plist */,
 			);
 			path = MyTasteFood;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2255B704210AD773000BDFF4 /* LaunchScreen.storyboard in Resources */,
+				22A72B18210B05C60072C398 /* API.plist in Resources */,
 				2255B701210AD773000BDFF4 /* Assets.xcassets in Resources */,
 				2255B6FF210AD772000BDFF4 /* Main.storyboard in Resources */,
 			);

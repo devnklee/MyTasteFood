@@ -18,7 +18,15 @@
 				<true/>
 			</dict>
 		</dict>
+        
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+        
 	</dict>
+    
+    <key>LSApplicationCategoryType</key>
+    <string>NSLocationWhenInUseUsageDescription</string>
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -10,4 +10,5 @@
 - show my location on map
 - and more function to be added
 
-
+## Problems
+- used CoreLocation to get current GPS. but the problem was that, naver search API returns location by katech not by longitude and latitute. gotta use naver API somehow to get current location.

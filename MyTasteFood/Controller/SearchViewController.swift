@@ -11,17 +11,16 @@ import SwiftyJSON
 import Alamofire
 import CoreLocation
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate{
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, NMapLocationManagerDelegate{
+    
 
     
     @IBOutlet weak var tableView: UITableView!
     
     var outcomeList : [searchOutcomeModel] = [searchOutcomeModel]()
     let SearchAPI_URL = "https://openapi.naver.com/v1/search/local.json"
-    let locationManager = CLLocationManager()
-    var longitude : String?
-    var latitude : String?
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +30,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         tableView.dataSource = self
         tableView.rowHeight = 105
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
+        if let lm = NMapLocationManager.getSharedInstance() {
+            lm.setDelegate(self)
+            lm.startContinuousLocationInfo()
+        }
+       
        
         
     }
@@ -43,20 +44,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - GPS
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+    //MARK: - NMAP
+    func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
+        print("yes did update")
+        print(location.coordinate)
+        print(location.coordinate.longitude)
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[locations.count - 1]
-        if location.horizontalAccuracy > 0 {
-            locationManager.stopUpdatingLocation()
-            longitude = String(location.coordinate.longitude)
-            latitude = String(location.coordinate.latitude)
-            self.tableView.reloadData()
-        }
+    @nonobjc func locationManager(_ locationManager: NMapLocationManager!, didUpdate heading: CLHeading!) {
+        
     }
+    
+    func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
+        print("ffailled")
+        print(errorType.rawValue)
+    }
+    
+
+
     
     //MARK: - tableview
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,7 +70,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         cell.title.text = outcomeList[indexPath.row].title
         cell.address.text = outcomeList[indexPath.row].address
         cell.category.text = outcomeList[indexPath.row].category
-        print(longitude)
 
         
         return cell
@@ -119,8 +123,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                         
                         self.outcomeList.append(item)
                     }
-                    self.locationManager.startUpdatingLocation()
                     
+                    self.tableView.reloadData()
                     
                 }else {
                     print(response.result.error as Any)
